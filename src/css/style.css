@@ -258,3 +258,92 @@ a:hover {
     transform: none;
   }
 }
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.site-footer {
+  background-color: var(--color-primary-dark);
+  color: #e1e6dd;
+  padding: 70px 0 25px;
+}
+
+.footer-brand {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.footer-brand i {
+  color: var(--color-accent);
+}
+
+.footer-brand:hover {
+  color: var(--color-accent);
+}
+
+.footer-description {
+  max-width: 360px;
+  color: #e1e6dd;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.footer-heading {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: #e1e6dd;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+.footer-links a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 50px;
+  padding-top: 25px;
+  color: #e1e6dd;
+  font-size: 0.85rem;
+}
+
+/* Footer Responsive */
+
+@media (max-width: 767.98px) {
+  .site-footer {
+    padding: 50px 0 25px;
+  }
+
+  .footer-description {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    margin-top: 35px;
+  }
+}
