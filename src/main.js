@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import '/src/style.css';
-
+import './css/style.css';
 // Little Wonders application entry point
 console.log('Little Wonders is ready!');

@@ -178,3 +178,83 @@ a:hover {
     letter-spacing: 1px;
   }
 }
+
+/* ========================================
+   FEATURES SECTION
+======================================== */
+
+.features-section {
+  background-color: #fffdf8;
+}
+
+.section-eyebrow {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.section-title {
+  color: var(--color-primary-dark);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+.section-description {
+  max-width: 540px;
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.feature-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(65, 75, 60, 0.14);
+}
+
+.feature-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-content {
+  padding: 24px;
+}
+
+.feature-icon {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+}
+
+.feature-content h3 {
+  font-size: 1.3rem;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.feature-content p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card {
+    transition: none;
+  }
+
+  .feature-card:hover {
+    transform: none;
+  }
+}
