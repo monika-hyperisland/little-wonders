@@ -1,13 +1,127 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>little-wonders</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Little Wonders</title>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+   
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-flower1 text-wonder me-2"></i>
+        Little Wonders
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <div class="collapse navbar-collapse" id="mainNavbar">
+
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">
+              Login
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-wonder" href="register.html">
+              Get Started
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page content will be added next -->
+ 
+<main>
+  <!-- Hero Section -->
+  <section class="hero-section py-5">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <!-- Hero Text -->
+        <div class="col-lg-6">
+          <div class="hero-content">
+
+            <span class="hero-eyebrow">
+              <i class="bi bi-stars me-2"></i>
+              YOUR LITTLE MOMENTS MATTER
+            </span>
+
+            <h1 class="hero-title mt-3">
+              Every little moment
+              <span>deserves to be remembered.</span>
+            </h1>
+
+            <p class="hero-description mt-4">
+              Capture your pets, plants, adventures, and
+              all the little things that make life beautiful.
+              Create your own collection of memories
+              and keep them close to your heart.
+            </p>
+
+            <a href="register.html"
+               class="btn btn-wonder mt-3">
+              Start Your Journey
+              <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="col-lg-6">
+          <div class="hero-image-wrapper">
+            <img
+              src="/images/hero.jpg"
+              alt="A collection of beautiful everyday memories"
+              class="hero-image"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <script type="module" src="/src/main.js"></script>
+
+</body>
+
 </html>
