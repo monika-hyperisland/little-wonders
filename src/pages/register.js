@@ -1,7 +1,9 @@
 
+import { supabase } from '../lib/supabase.js';
+
 const registerForm = document.querySelector('#registerForm');
 
-registerForm.addEventListener('submit', (event) => {
+registerForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const name = document.querySelector('#fullName').value.trim();
@@ -34,7 +36,35 @@ registerForm.addEventListener('submit', (event) => {
     return;
   }
 
-  message.classList.add('alert-success');
+  
+message.classList.add('alert-info');
+message.textContent = 'Creating your account...';
+
+try {
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: name,
+      },
+      emailRedirectTo: `${window.location.origin}/login.html`,
+    },
+  });
+
+  if (error) {
+    message.className = 'alert alert-danger mt-3';
+    message.textContent = error.message;
+    return;
+  }
+
+  message.className = 'alert alert-success mt-3';
   message.textContent =
-    'Form validated successfully! Registration is coming soon.';
+    'Please check your email for a confirmation link.';
+} catch (error) {
+  message.className = 'alert alert-danger mt-3';
+  message.textContent =
+    'Unable to connect. Please try again later.';
+}
+
 });

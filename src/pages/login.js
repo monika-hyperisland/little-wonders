@@ -1,7 +1,9 @@
 
+import { supabase } from '../lib/supabase.js';
+
 const loginForm = document.querySelector('#loginForm');
 
-loginForm.addEventListener('submit', (event) => {
+loginForm.addEventListener('submit', async(event) => {
   event.preventDefault();
 
   const email = document.querySelector('#email').value.trim();
@@ -23,7 +25,31 @@ loginForm.addEventListener('submit', (event) => {
     return;
   }
 
-  message.classList.add('alert-info');
+
+message.className = 'alert alert-info mt-3';
+message.textContent = 'Signing in...';
+
+try {
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    message.className = 'alert alert-danger mt-3';
+    message.textContent = 'Invalid email or password.';
+    return;
+  }
+
+  message.className = 'alert alert-success mt-3';
+  message.textContent = 'Login successful! Welcome back.';
+} catch (error) {
+  console.error('Login request failed:', error);
+
+  message.className = 'alert alert-danger mt-3';
   message.textContent =
-    'Form validated! Actual login will be available soon.';
+    'Unable to connect. Please try again later.';
+}
+;
 });
+
