@@ -9,7 +9,9 @@ export default defineConfig({
     main: resolve(import.meta.dirname, 'index.html'),
     register: resolve(import.meta.dirname, 'register.html'),
     login: resolve(import.meta.dirname, 'login.html'),
-    },
+    wonders: resolve(__dirname, 'wonders.html'),
+    addWonder: resolve(__dirname, 'add-wonder.html'),
+},
     },
   },
 });
