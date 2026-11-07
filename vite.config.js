@@ -11,6 +11,7 @@ export default defineConfig({
     login: resolve(import.meta.dirname, 'login.html'),
     wonders: resolve(__dirname, 'wonders.html'),
     addWonder: resolve(__dirname, 'add-wonder.html'),
+    editWonder: resolve(__dirname, 'edit-wonder.html'),
 },
     },
   },

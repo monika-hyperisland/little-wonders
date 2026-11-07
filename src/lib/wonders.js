@@ -40,3 +40,49 @@ export async function createWonder({ category, title, description }) {
 
   return data;
 }
+
+
+export async function updateWonder(id, { category, title, description }) {
+  const { data, error } = await supabase
+    .from('wonders')
+    .update({
+      category,
+      title,
+      description,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+export async function getWonderById(id) {
+  const { data, error } = await supabase
+    .from('wonders')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+export async function deleteWonder(id) {
+  const { error } = await supabase
+    .from('wonders')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    throw error;
+  }
+}

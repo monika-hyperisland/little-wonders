@@ -1,6 +1,6 @@
 
 import '../main.js';
-import { getWonders } from '../lib/wonders.js';
+import { getWonders, deleteWonder } from '../lib/wonders.js';
 import { supabase } from '../lib/supabase.js';
 const wondersList = document.querySelector('#wondersList');
 
@@ -46,8 +46,45 @@ wonders.forEach((wonder) => {
   const description = document.createElement('p');
   description.className = 'card-text';
   description.textContent = wonder.description || 'No description yet.';
+ 
 
-  body.append(title, category, description);
+const editLink = document.createElement('a');
+editLink.className = 'btn btn-outline-primary btn-sm mt-2';
+editLink.href = `edit-wonder.html?id=${encodeURIComponent(wonder.id)}`;
+editLink.textContent = 'Edit';
+
+const deleteButton = document.createElement('button');
+deleteButton.type = 'button';
+deleteButton.className = 'btn btn-outline-danger btn-sm mt-2 ms-2';
+deleteButton.textContent = 'Delete';
+
+
+deleteButton.addEventListener('click', async () => {
+  const confirmed = window.confirm(
+    `Are you sure you want to delete "${wonder.title}"?`
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  deleteButton.disabled = true;
+  deleteButton.textContent = 'Deleting...';
+
+  try {
+    await deleteWonder(wonder.id);
+    await loadWonders();
+  } catch (error) {
+    console.error('Failed to delete wonder:', error);
+
+    window.alert('Unable to delete this wonder.');
+    deleteButton.disabled = false;
+    deleteButton.textContent = 'Delete';
+  }
+});
+
+
+  body.append(title, category, description, editLink, deleteButton);
   card.appendChild(body);
   column.appendChild(card);
   wondersList.appendChild(column);
@@ -63,9 +100,3 @@ wonders.forEach((wonder) => {
 
 loadWonders();
 
-console.log(
-  'Supabase session stored:',
-  Object.keys(localStorage).some(
-    key => key.startsWith('sb-') && key.endsWith('-auth-token')
-  )
-);
