@@ -53,3 +53,29 @@ try {
 ;
 });
 
+const logoutButton = document.querySelector('#logoutButton');
+
+logoutButton.addEventListener('click', async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error('Logout failed:', error.message);
+    return;
+  }
+
+  window.location.reload();
+});
+
+
+async function updateLogoutVisibility() {
+  const { data, error } = await supabase.auth.getUser();
+
+  const logoutSection = document.querySelector('#logoutSection');
+
+  if (!error && data.user) {
+    logoutSection.classList.remove('d-none');
+  }
+}
+
+updateLogoutVisibility();
+
