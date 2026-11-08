@@ -1,4 +1,4 @@
-
+import { uploadWonderPhoto } from '../lib/photos.js';
 import { createWonder } from '../lib/wonders.js';
 
 const form = document.querySelector('#addWonderForm');
@@ -23,8 +23,19 @@ form.addEventListener('submit', async (event) => {
   message.classList.add('alert-info');
   message.textContent = 'Saving your wonder...';
 
-  try {
-    await createWonder({ category, title, description });
+  
+try {
+  const photoFile = document.querySelector('#wonder-photo')?.files[0];
+
+  const wonder = await createWonder({
+    category,
+    title,
+    description,
+  });
+
+  if (photoFile) {
+    await uploadWonderPhoto(wonder.id, photoFile);
+  }
 
     message.className = 'alert alert-success mt-3';
     message.textContent = 'Wonder saved successfully!';

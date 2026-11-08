@@ -2,6 +2,10 @@
 import '../main.js';
 import { getWonders, deleteWonder } from '../lib/wonders.js';
 import { supabase } from '../lib/supabase.js';
+import {
+  getWonderPhotoUrl,
+  downloadWonderPhoto,
+} from '../lib/photos.js';
 const wondersList = document.querySelector('#wondersList');
 
 async function loadWonders() {
@@ -25,7 +29,7 @@ if (error || !data.user) {
 
 wondersList.replaceChildren();
 
-wonders.forEach((wonder) => {
+wonders.forEach(async (wonder) => {
   const column = document.createElement('div');
   column.className = 'col-12 col-md-6 col-lg-4';
 
@@ -85,6 +89,58 @@ deleteButton.addEventListener('click', async () => {
 
 
   body.append(title, category, description, editLink, deleteButton);
+
+  try {
+    const photoUrl = await getWonderPhotoUrl(wonder.id);
+
+    if (photoUrl) {
+      const image = document.createElement('img');
+      image.src = photoUrl;
+      image.alt = wonder.title;
+      image.className = 'card-img-top';
+      image.style.height = '200px';
+      image.style.objectFit = 'cover';
+
+      card.prepend(image);
+
+      const downloadButton = document.createElement('button');
+      downloadButton.type = 'button';
+      downloadButton.className = 'btn btn-outline-success btn-sm m-3';
+      downloadButton.textContent = 'Download Photo';
+
+      downloadButton.addEventListener('click', async () => {
+        downloadButton.disabled = true;
+        downloadButton.textContent = 'Downloading...';
+
+        try {
+          const { file, filename } = await downloadWonderPhoto(wonder.id);
+
+          const url = URL.createObjectURL(file);
+          const link = document.createElement('a');
+
+          link.href = url;
+          link.download = filename || 'wonder-photo';
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        } catch (error) {
+          console.error('Failed to download photo:', error);
+          window.alert('Unable to download the photo.');
+        } finally {
+          downloadButton.disabled = false;
+          downloadButton.textContent = 'Download Photo';
+        }
+      });
+
+      body.appendChild(downloadButton);
+
+    }
+  } catch (error) {
+    console.error('Failed to load wonder photo:', error);
+  }
+
   card.appendChild(body);
   column.appendChild(card);
   wondersList.appendChild(column);
