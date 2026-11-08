@@ -8,6 +8,13 @@ import {
 } from '../lib/photos.js';
 const wondersList = document.querySelector('#wondersList');
 
+function getCategoryFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get('category');
+
+  return category ? category.toLowerCase() : '';
+}
+
 async function loadWonders() {
   try {
 
@@ -19,17 +26,32 @@ if (error || !data.user) {
 }
 
     const wonders = await getWonders();
+    const categoryFilter = getCategoryFilter();
+    const visibleWonders = categoryFilter
+      ? wonders.filter((wonder) => wonder.category === categoryFilter)
+      : wonders;
 
-    if (wonders.length === 0) {
-      wondersList.textContent =
-        'No wonders yet. Your little memories will appear here!';
+    if (visibleWonders.length === 0) {
+      wondersList.replaceChildren();
+
+      const emptyColumn = document.createElement('div');
+      emptyColumn.className = 'col-12';
+
+      const emptyMessage = document.createElement('p');
+      emptyMessage.className = 'text-muted mb-0';
+      emptyMessage.textContent = categoryFilter
+        ? 'No wonders yet in this category. Add your first one!'
+        : 'No wonders yet. Your little memories will appear here!';
+
+      emptyColumn.appendChild(emptyMessage);
+      wondersList.appendChild(emptyColumn);
       return;
     }
 
 
 wondersList.replaceChildren();
 
-wonders.forEach(async (wonder) => {
+visibleWonders.forEach(async (wonder) => {
   const column = document.createElement('div');
   column.className = 'col-12 col-md-6 col-lg-4';
 
@@ -110,7 +132,8 @@ body.append(title, category, description, actions);
 
       const downloadButton = document.createElement('button');
       downloadButton.type = 'button';
-downloadButton.className = 'btn btn-outline-success btn-sm';      downloadButton.textContent = 'Download Photo';
+      downloadButton.className = 'btn btn-outline-success btn-sm rounded-pill px-3';
+      downloadButton.textContent = 'Download Photo';
 
       downloadButton.addEventListener('click', async () => {
         downloadButton.disabled = true;

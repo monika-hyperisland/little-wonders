@@ -45,11 +45,23 @@
         ></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary">
+      <div class="mb-4">
+        <label for="wonder-photo" class="form-label">
+          Add or replace photo (optional)
+        </label>
+        <input
+          type="file"
+          class="form-control"
+          id="wonder-photo"
+          accept="image/*"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-wonder rounded-pill px-4">
         Save Changes
       </button>
 
-      <a href="wonders.html" class="btn btn-outline-secondary ms-2">
+      <a href="wonders.html" class="btn btn-wonder-outline rounded-pill px-4 ms-2">
         Cancel
       </a>
     </form>

@@ -14,7 +14,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm site-navbar">
     <div class="container">
 
       <!-- Brand -->
@@ -23,8 +23,24 @@
         Little Wonders
       </a>
 
+      <span class="d-none fw-semibold text-wonder ms-auto me-2" id="navUserDisplay">
+        <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+        <span id="navUserName"></span>
+      </span>
+
+      <button
+        type="button"
+        id="navLogoutButton"
+        class="btn btn-sm btn-wonder-outline d-none"
+        aria-label="Log out"
+      >
+        <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>
+        Log out
+      </button>
+
       <!-- Mobile menu button -->
       <button
+        id="mainNavbarToggler"
         class="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
@@ -41,19 +57,13 @@
 
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              Home
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">
+          <li class="nav-item" id="navLoginItem">
+            <a class="btn btn-wonder-outline" href="login.html">
               Login
             </a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" id="navRegisterItem">
             <a class="btn btn-wonder" href="register.html">
               Get Started
             </a>
@@ -95,7 +105,8 @@
             </p>
 
             <a href="register.html"
-               class="btn btn-wonder mt-3">
+              class="btn btn-wonder mt-3"
+              id="heroStartJourneyButton">
               Start Your Journey
               <i class="bi bi-arrow-right ms-2"></i>
             </a>
@@ -141,7 +152,7 @@
 
       <!-- Pets -->
       <div class="col-12 col-md-6 col-lg-3">
-        <article class="feature-card h-100">
+        <article class="feature-card h-100 js-wonder-entry" data-wonder-category="pet" role="button" tabindex="0" aria-label="View your pet wonders">
           <img
             src="/images/pets.jpg"
             alt="A happy pet outdoors"
@@ -159,7 +170,7 @@
 
       <!-- Plants -->
       <div class="col-12 col-md-6 col-lg-3">
-        <article class="feature-card h-100">
+        <article class="feature-card h-100 js-wonder-entry" data-wonder-category="plant" role="button" tabindex="0" aria-label="View your plant wonders">
           <img
             src="/images/plants.jpg"
             alt="A beautiful green houseplant"
@@ -177,7 +188,7 @@
 
       <!-- Adventures -->
       <div class="col-12 col-md-6 col-lg-3">
-        <article class="feature-card h-100">
+        <article class="feature-card h-100 js-wonder-entry" data-wonder-category="adventure" role="button" tabindex="0" aria-label="View your adventure wonders">
           <img
             src="/images/adventures.jpg"
             alt="A beautiful travel destination"
@@ -195,7 +206,7 @@
 
       <!-- Creations -->
       <div class="col-12 col-md-6 col-lg-3">
-        <article class="feature-card h-100">
+        <article class="feature-card h-100 js-wonder-entry" data-wonder-category="creation" role="button" tabindex="0" aria-label="View your creation wonders">
           <img
             src="/images/creations.jpg"
             alt="Art supplies and a creative journal"
@@ -239,39 +250,6 @@
         </p>
       </div>
 
-      <!-- Explore links -->
-      <div class="col-6 col-lg-3">
-        <h2 class="footer-heading">Explore</h2>
-
-        <ul class="footer-links">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="journals.html">My Journals</a>
-          </li>
-          <li>
-            <a href="wonder-wall.html">Wonder Wall</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Account links -->
-      <div class="col-6 col-lg-4">
-        <h2 class="footer-heading">Your Journey</h2>
-
-        <ul class="footer-links">
-          <li>
-            <a href="register.html">Get Started</a>
-          </li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="profile.html">My Profile</a>
-          </li>
-        </ul>
-      </div>
     </div>
 
     <!-- Footer bottom -->
@@ -285,6 +263,7 @@
 </footer>
 
   <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/pages/index.js"></script>
 
 </body>
 

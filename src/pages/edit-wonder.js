@@ -1,10 +1,12 @@
 
 import '../main.js';
 import { getWonderById } from '../lib/wonders.js';
+import { uploadWonderPhoto } from '../lib/photos.js';
 
 const categoryInput = document.querySelector('#category');
 const titleInput = document.querySelector('#title');
 const descriptionInput = document.querySelector('#description');
+const photoInput = document.querySelector('#wonder-photo');
 const message = document.querySelector('#editWonderMessage');
 
 async function loadWonder() {
@@ -46,6 +48,7 @@ editForm.addEventListener('submit', async (event) => {
   const category = categoryInput.value;
   const title = titleInput.value.trim();
   const description = descriptionInput.value.trim();
+  const photoFile = photoInput?.files[0];
 
   if (!wonderId || !category || !title) {
     message.className = 'alert alert-danger mt-3';
@@ -62,6 +65,10 @@ editForm.addEventListener('submit', async (event) => {
       title,
       description,
     });
+
+    if (photoFile) {
+      await uploadWonderPhoto(wonderId, photoFile);
+    }
 
     message.className = 'alert alert-success mt-3';
     message.textContent = 'Wonder updated successfully!';
