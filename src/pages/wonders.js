@@ -53,13 +53,13 @@ wonders.forEach(async (wonder) => {
  
 
 const editLink = document.createElement('a');
-editLink.className = 'btn btn-outline-primary btn-sm';
+editLink.className = 'btn btn-outline-success btn-sm rounded-pill px-3';
 editLink.href = `edit-wonder.html?id=${encodeURIComponent(wonder.id)}`;
 editLink.textContent = 'Edit';
 
 const deleteButton = document.createElement('button');
 deleteButton.type = 'button';
-deleteButton.className = 'btn btn-outline-danger btn-sm';
+deleteButton.className = 'btn btn-outline-danger btn-sm rounded-pill px-3';
 deleteButton.textContent = 'Delete';
 
 deleteButton.addEventListener('click', async () => {

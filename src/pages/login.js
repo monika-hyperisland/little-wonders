@@ -41,8 +41,7 @@ try {
     return;
   }
 
-  message.className = 'alert alert-success mt-3';
-  message.textContent = 'Login successful! Welcome back.';
+  window.location.replace('/wonders.html');
 } catch (error) {
   console.error('Login request failed:', error);
 
@@ -67,15 +66,17 @@ logoutButton.addEventListener('click', async () => {
 });
 
 
+
 async function updateLogoutVisibility() {
   const { data, error } = await supabase.auth.getUser();
 
   const logoutSection = document.querySelector('#logoutSection');
+  const isLoggedIn = !error && !!data.user;
 
-  if (!error && data.user) {
-    logoutSection.classList.remove('d-none');
-  }
+  loginForm.classList.toggle('d-none', isLoggedIn);
+  logoutSection.classList.toggle('d-none', isLoggedIn === false);
 }
+
 
 updateLogoutVisibility();
 

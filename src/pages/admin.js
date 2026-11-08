@@ -1,3 +1,4 @@
+import '../main.js';
 
 import { supabase } from '../lib/supabase.js';
 
@@ -89,10 +90,32 @@ async function checkAdminAccess() {
     editButton.className = 'btn btn-sm btn-outline-primary ms-3';
     editButton.textContent = 'Edit';
 
-    item.appendChild(title);
-    item.appendChild(editButton);
-    item.appendChild(deleteButton);
+
+    const actions = document.createElement('div');
+    actions.className = 'd-flex flex-wrap gap-2';
+
+    editButton.className =
+      'btn btn-outline-success btn-sm rounded-pill px-3';
+
+    deleteButton.className =
+      'btn btn-outline-danger btn-sm rounded-pill px-3';
+
+    actions.append(editButton, deleteButton);
+
+    item.classList.add(
+      'd-flex',
+      'flex-column',
+      'flex-sm-row',
+      'justify-content-between',
+      'align-items-start',
+      'align-items-sm-center',
+      'gap-2',
+      'p-3'
+    );
+
+    item.append(title, actions);
     list.appendChild(item);
+
 
   }
 
