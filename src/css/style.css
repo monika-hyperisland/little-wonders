@@ -120,6 +120,26 @@ a:hover {
   opacity: 1;
 }
 
+@media (max-width: 991.98px) {
+  .site-navbar #mainNavbar {
+    padding-top: 8px;
+    padding-bottom: 4px;
+  }
+
+  .site-navbar #mainNavbar .navbar-nav {
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .site-navbar #navLoginItem .btn,
+  .site-navbar #navRegisterItem .btn {
+    padding: 8px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
+
 @media (max-width: 575.98px) {
   .site-navbar {
     width: 100%;
