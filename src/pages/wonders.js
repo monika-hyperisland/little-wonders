@@ -53,15 +53,14 @@ wonders.forEach(async (wonder) => {
  
 
 const editLink = document.createElement('a');
-editLink.className = 'btn btn-outline-primary btn-sm mt-2';
+editLink.className = 'btn btn-outline-primary btn-sm';
 editLink.href = `edit-wonder.html?id=${encodeURIComponent(wonder.id)}`;
 editLink.textContent = 'Edit';
 
 const deleteButton = document.createElement('button');
 deleteButton.type = 'button';
-deleteButton.className = 'btn btn-outline-danger btn-sm mt-2 ms-2';
+deleteButton.className = 'btn btn-outline-danger btn-sm';
 deleteButton.textContent = 'Delete';
-
 
 deleteButton.addEventListener('click', async () => {
   const confirmed = window.confirm(
@@ -88,7 +87,13 @@ deleteButton.addEventListener('click', async () => {
 });
 
 
-  body.append(title, category, description, editLink, deleteButton);
+
+const actions = document.createElement('div');
+actions.className = 'd-flex flex-wrap align-items-center gap-2 mt-3';
+
+actions.append(editLink, deleteButton);
+
+body.append(title, category, description, actions);
 
   try {
     const photoUrl = await getWonderPhotoUrl(wonder.id);
@@ -105,8 +110,7 @@ deleteButton.addEventListener('click', async () => {
 
       const downloadButton = document.createElement('button');
       downloadButton.type = 'button';
-      downloadButton.className = 'btn btn-outline-success btn-sm m-3';
-      downloadButton.textContent = 'Download Photo';
+downloadButton.className = 'btn btn-outline-success btn-sm';      downloadButton.textContent = 'Download Photo';
 
       downloadButton.addEventListener('click', async () => {
         downloadButton.disabled = true;
@@ -134,8 +138,7 @@ deleteButton.addEventListener('click', async () => {
         }
       });
 
-      body.appendChild(downloadButton);
-
+actions.appendChild(downloadButton);
     }
   } catch (error) {
     console.error('Failed to load wonder photo:', error);

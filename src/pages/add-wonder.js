@@ -1,3 +1,4 @@
+import '../main.js';
 import { uploadWonderPhoto } from '../lib/photos.js';
 import { createWonder } from '../lib/wonders.js';
 
