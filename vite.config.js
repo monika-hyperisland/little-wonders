@@ -12,6 +12,7 @@ export default defineConfig({
     wonders: resolve(__dirname, 'wonders.html'),
     addWonder: resolve(__dirname, 'add-wonder.html'),
     editWonder: resolve(__dirname, 'edit-wonder.html'),
+    admin: resolve(import.meta.dirname, 'admin.html'),
 },
     },
   },
